@@ -1,0 +1,68 @@
+$height: 4.2rem;
+
+:host {
+    font-size: 1rem;
+}
+
+body {
+    margin: 0;
+}
+
+@media print {
+    .no-print {
+        display: none;
+    }
+
+    .break {
+        page-break-before: right;
+        display: block;
+    }
+}
+
+header {
+    display: flex;
+    position: fixed;
+    justify-content: flex-end;
+    height: $height;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: #e4e4e4;
+    top: 0;
+    left: 0;
+}
+
+@for $i from 1 through 6 {
+    .mt-#{$i} {
+        margin-top: #{$i} +'rem';
+    }
+
+    .mb-#{$i} {
+        margin-bottom: #{$i} +'rem';
+    }
+
+    .ml-#{$i} {
+        margin-left: #{$i} +'rem';
+    }
+
+    .mr-#{$i} {
+        margin-right: #{$i} +'rem';
+    }
+}
+
+.check {
+    width: 100%;
+    display: flex;
+
+    label {
+        width: 150px;
+    }
+    .underline {
+        width: 90%;
+        border-bottom: 1px #cecece solid;
+
+        &.no-border {
+            border-bottom: none;
+        }
+    }
+}

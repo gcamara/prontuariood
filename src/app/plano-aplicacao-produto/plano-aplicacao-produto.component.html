@@ -1,0 +1,83 @@
+<header class="no-print">
+    <button type="submit" mat-flat-button (click)="generate()" color="primary">Gerar Prontuário</button>
+</header>
+<div class="mt-6 no-print"></div>
+<pdf-section>
+    <div class="logo">
+        <img src="../../assets/images/logo_od.png">
+    </div>
+    <section class="data mt-4">
+        <strong class="mr-1">Data e Hora:</strong> <span>{{data}}</span>
+    </section>
+    <section class="dados">
+        <h2>Dados do Paciente</h2>
+        <form [formGroup]="form">
+            <mat-form-field class="nome mr-1">
+                <mat-label>Nome</mat-label>
+                <input matInput type="text" formControlName="nome">
+                <mat-error *ngIf="form.invalid && !form.get('nome')?.valid">O nome é obrigatório</mat-error>
+            </mat-form-field>
+            <mat-form-field class="cpf">
+                <mat-label>CPF</mat-label>
+                <input matInput type="text" formControlName="cpf" mask="000.000.000-00">
+                <mat-error *ngIf="form.invalid && !form.get('cpf')?.valid">O cpf é obrigatório</mat-error>
+            </mat-form-field>
+            <div class="mt-2 mb-2">
+                <mat-radio-group formControlName="temMedicamento" name="medicamento">
+                    <mat-label>Usa medicamento crônico</mat-label>
+                    <br>
+                    <br>
+                    <mat-radio-button class="mr-2" value="true">Sim</mat-radio-button>
+                    <mat-radio-button [checked]="true" value="false">Não</mat-radio-button>
+                </mat-radio-group>
+                <mat-form-field class="alergias mt-1" *ngIf="form.get('temMedicamento')?.value === 'true'">
+                    <input matInput formControlName="medicamentoCronico" placeholder="Informe os medicamentos crônicos">
+                </mat-form-field>
+            </div>
+            <div class="mb-2" [ngClass]="{ 'mt-2': form.get('temMedicamento')?.value === 'true' }">
+                <mat-radio-group formControlName="temAlergias" name="alergia">
+                    <mat-label>Possui alguma alergia?</mat-label>
+                    <br>
+                    <br>
+                    <mat-radio-button class="mr-2" value="true">Sim</mat-radio-button>
+                    <mat-radio-button [checked]="true" value="false">Não</mat-radio-button>
+                </mat-radio-group>
+                <mat-form-field class="alergias mt-1" *ngIf="form.get('temAlergias')?.value === 'true'">
+                    <textarea matInput formControlName="alergias" placeholder="Informe as alergias"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="mb-2" [ngClass]="{ 'mt-2': form.get('temMedicamento')?.value === 'true' }">
+                <mat-radio-group formControlName="temInformacoes" name="info">
+                    <mat-label>Alguma informação a mais?</mat-label>
+                    <br>
+                    <br>
+                    <mat-radio-button class="mr-2" value="true">Sim</mat-radio-button>
+                    <mat-radio-button [checked]="true" value="false">Não</mat-radio-button>
+                </mat-radio-group>
+                <mat-form-field class="alergias mt-1" *ngIf="form.get('temInformacoes')?.value === 'true'">
+                    <textarea matInput formControlName="informacoesAdicionais" placeholder="Insira as informações adicionais"></textarea>
+                </mat-form-field>
+            </div>
+        </form>
+    </section>
+</pdf-section>
+<pdf-section class="break">
+    <section class="row">
+        <!-- <h1>Nova seção</h1> -->
+        <app-tbl-produto title="Botox" img="botox"></app-tbl-produto>
+        <app-tbl-produto title="Preenchimento" img="preenchimento" class="preenchimento"></app-tbl-produto>
+    </section>
+</pdf-section>
+<pdf-section class="break">
+    <section>
+        <h2>Acompanhamento - Cuidados Pós Procedimento</h2>
+        <div class="check mb-2" *ngFor="let check of checks">
+            <label>{{check.title}}</label>
+            <mat-checkbox color="primary">Sim</mat-checkbox>
+            <div class="ml-2"></div>
+            <mat-checkbox color="primary">Não</mat-checkbox>
+            <div class="ml-1"></div>
+            <div class="underline" [ngClass]="{ 'no-border': !check.showUnderline }"></div>
+        </div>
+    </section>
+</pdf-section>

@@ -1,0 +1,27 @@
+<h2>{{title}}</h2>
+<div class="image mb-2 mt-1">
+  <img src="../../assets/images/{{img}}.png">
+</div>
+<table mat-table [dataSource]="elements">
+
+  <ng-container matColumnDef="local">
+    <th mat-header-cell *matHeaderCellDef> Local de Aplicação </th>
+    <td mat-cell *matCellDef="let element"></td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="quantidade">
+    <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+    <td mat-cell *matCellDef="let element"></td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="data">
+    <th mat-header-cell *matHeaderCellDef> Data de Aplicação </th>
+    <td mat-cell *matCellDef="let element"></td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="headers"></tr>
+  <tr mat-row *matRowDef="let row; columns: headers;"></tr>
+</table>
