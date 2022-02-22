@@ -3,16 +3,17 @@ import { jsPDF } from 'jspdf';
 // import html2canvas from 'html2canvas';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PdfSectionComponent } from '../pdf-section/pdf-section.component';
+import { TblProdutoComponent } from '../tbl-produto/tbl-produto.component';
 
 @Component({
   selector: 'app-plano-aplicacao-produto',
   templateUrl: './plano-aplicacao-produto.component.html',
   styleUrls: ['./plano-aplicacao-produto.component.scss'],
 })
-export class PlanoAplicacaoProdutoComponent implements AfterViewInit {
+export class PlanoAplicacaoProdutoComponent {
 
-  @ViewChildren(PdfSectionComponent, { read: ElementRef })
-  container!: QueryList<ElementRef<HTMLElement>>;
+  @ViewChildren(TblProdutoComponent)
+  produtos!: QueryList<TblProdutoComponent>;
 
   form: FormGroup = this.fb.group({});
   checks = [{
@@ -54,58 +55,16 @@ export class PlanoAplicacaoProdutoComponent implements AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    console.log('elements', this.container);
-  }
-
   async generate() {
-    if (!this.form.valid) {
-      // this.form.markAllAsTouched();
-      // return;
-    }
-
     window.print();
-    
-    // let doc = new jsPDF('p', 'mm', 'a4');
-    // await Promise.all(
-    //     this.container.toArray().map(async (element: ElementRef<HTMLElement>, index) => { 
-    //       doc = await this.createPage(element.nativeElement.firstChild as HTMLElement, doc, index);
-    //       return doc;
-    //     })
-    // );
-    // doc.save('test.pdf');
   }
 
-  // async createPage(element: HTMLElement, doc: jsPDF, index: number): Promise<any> {
-  //    return html2canvas(element, { scrollY: -window.scrollY }).then(
-  //     (canvas: HTMLCanvasElement) => {
-  //       if (index > 0) {
-  //         doc = doc.addPage('a4', 'p');
-  //       }
-  //       let width = doc.internal.pageSize.getWidth();
-  //       let height = doc.internal.pageSize.getHeight();
-
-  //       let widthRatio = width / canvas.width
-  //       let heightRatio = height / canvas.height
-
-  //       let ratio = (widthRatio > heightRatio ? heightRatio : widthRatio);
-
-  //       doc = doc.addImage(
-  //         canvas.toDataURL('image/jpeg'),
-  //         'jpeg',
-  //         0,
-  //         0,
-  //         canvas.width * ratio,
-  //         canvas.height * ratio,
-  //       );
-
-  //       return doc;
-  //     }
-  //   )
-  // }
-  
   get data(): string {
     return new Date().toLocaleDateString('pt-Br');
+  }
+
+  addNewLine(): void {
+    this.produtos.forEach(item => item.addNewLine());
   }
 
 }

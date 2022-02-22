@@ -3,8 +3,15 @@
 
     &.preenchimento {
         img {
-            width: 190px;
-            height: 190px;
+            width: 200px;
+            height: 200px;
+        }
+    }
+
+    &.botox {
+        img {
+            width: 220px;
+            height: 200px;
         }
     }
 }
@@ -22,11 +29,6 @@ table {
     page-break-before: initial; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
     page-break-after: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
     page-break-inside: avoid; /* or 'auto' */
-}
-
-img {
-    width: 200px;
-    height: 200px;
 }
 
 th {
@@ -56,4 +58,13 @@ th.mat-header-cell {
 
 th.mat-header-cell:first-of-type {
     padding-left: 0;
+}
+
+.mat-column-etiqueta {
+    text-align: center;
+    min-width: 100px;
+}
+
+.mat-column-quantidade {
+    min-width: 50px;
 }

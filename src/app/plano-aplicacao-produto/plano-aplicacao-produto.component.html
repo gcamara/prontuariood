@@ -28,7 +28,7 @@
                     <br>
                     <br>
                     <mat-radio-button class="mr-2" value="true">Sim</mat-radio-button>
-                    <mat-radio-button [checked]="true" value="false">Não</mat-radio-button>
+                    <mat-radio-button value="false">Não</mat-radio-button>
                 </mat-radio-group>
                 <mat-form-field class="alergias mt-1" *ngIf="form.get('temMedicamento')?.value === 'true'">
                     <input matInput formControlName="medicamentoCronico" placeholder="Informe os medicamentos crônicos">
@@ -40,7 +40,7 @@
                     <br>
                     <br>
                     <mat-radio-button class="mr-2" value="true">Sim</mat-radio-button>
-                    <mat-radio-button [checked]="true" value="false">Não</mat-radio-button>
+                    <mat-radio-button value="false">Não</mat-radio-button>
                 </mat-radio-group>
                 <mat-form-field class="alergias mt-1" *ngIf="form.get('temAlergias')?.value === 'true'">
                     <textarea matInput formControlName="alergias" placeholder="Informe as alergias"></textarea>
@@ -52,7 +52,7 @@
                     <br>
                     <br>
                     <mat-radio-button class="mr-2" value="true">Sim</mat-radio-button>
-                    <mat-radio-button [checked]="true" value="false">Não</mat-radio-button>
+                    <mat-radio-button value="false">Não</mat-radio-button>
                 </mat-radio-group>
                 <mat-form-field class="alergias mt-1" *ngIf="form.get('temInformacoes')?.value === 'true'">
                     <textarea matInput formControlName="informacoesAdicionais" placeholder="Insira as informações adicionais"></textarea>
@@ -64,9 +64,11 @@
 <pdf-section class="break">
     <section class="row">
         <!-- <h1>Nova seção</h1> -->
-        <app-tbl-produto title="Botox" img="botox"></app-tbl-produto>
+        <app-tbl-produto title="Botox" img="botox" class="botox"></app-tbl-produto>
         <app-tbl-produto title="Preenchimento" img="preenchimento" class="preenchimento"></app-tbl-produto>
     </section>
+    <br/>
+    <button mat-flat-button color="primary" (click)="addNewLine()" class="no-print">Adicionar</button>
 </pdf-section>
 <pdf-section class="break">
     <section>
@@ -80,4 +82,11 @@
             <div class="underline" [ngClass]="{ 'no-border': !check.showUnderline }"></div>
         </div>
     </section>
+</pdf-section>
+<pdf-section class="break">
+    <section class="row">
+        <app-tbl-produto title="Planejamento Futuro" img="botox" class="botox"></app-tbl-produto>
+    </section>
+    <br/>
+    <button mat-flat-button color="primary" (click)="addNewLine()" class="no-print">Adicionar</button>
 </pdf-section>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 interface Produto { 
   localDeAplicacao?: string;
@@ -17,12 +17,20 @@ export class TblProdutoComponent implements OnInit {
 
   @Input() img!: string;
 
-  headers = ['local', 'quantidade', 'data'];
-  elements: Produto[] = Array.from({ length: 10});
+  headers = ['local', 'quantidade', 'data', 'etiqueta'];
+  elements: Produto[] = Array.from({ length: 10 });
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+  }
+
+  addNewLine(): void {
+    this.elements = [
+      ...this.elements,
+      {}
+    ]
+    this.cdr.detectChanges();
   }
 
 }

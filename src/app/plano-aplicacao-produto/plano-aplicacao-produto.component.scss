@@ -8,15 +8,8 @@ body {
     margin: 0;
 }
 
-@media print {
-    .no-print {
-        display: none;
-    }
-
-    .break {
-        page-break-before: right;
-        display: block;
-    }
+.mat-flat-button {
+    max-width: 200px;
 }
 
 header {
@@ -30,6 +23,7 @@ header {
     background-color: #e4e4e4;
     top: 0;
     left: 0;
+    z-index: 99;
 }
 
 @for $i from 1 through 6 {
